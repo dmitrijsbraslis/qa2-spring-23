@@ -6,6 +6,7 @@ public class Student {
     private String lastName;
     private String email;
     private int age;
+    private String phone;
 
     //----------------GETTERS/SETTERS-----------------------
     public String getFirstName() {
