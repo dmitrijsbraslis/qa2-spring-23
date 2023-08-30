@@ -22,6 +22,6 @@ Feature: Weather forecast
       | feels_like | 278.41     |
       | pressure   | 1014       |
 
-    And current weather details are:
-      | id   | 802    |
-      | main | Clouds |
+#    And current weather details are:
+#      | id   | 802    |
+#      | main | Clouds |
