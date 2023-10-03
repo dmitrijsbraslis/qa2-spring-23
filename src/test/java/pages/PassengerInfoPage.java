@@ -1,6 +1,7 @@
 package pages;
 
-import model.ReservationInfo;
+import model.tickets.Flight;
+import model.tickets.Passenger;
 import org.openqa.selenium.By;
 
 public class PassengerInfoPage {
@@ -11,6 +12,7 @@ public class PassengerInfoPage {
     private final By CHILDREN = By.id("children");
     private final By BAG = By.id("bugs");
     private final By FLIGHT = By.id("flight");
+    private final By FLIGHT_INFO = By.xpath(".//span[@class = 'bTxt']");
 
     private BaseFunc baseFunc;
 
@@ -18,20 +20,21 @@ public class PassengerInfoPage {
         this.baseFunc = baseFunc;
     }
 
-    public void fillInPassengerInfo(ReservationInfo reservationInfo) {
-        baseFunc.type(FIRST_NAME, reservationInfo.getFirstName());
-        baseFunc.type(LAST_NAME, reservationInfo.getLastName());
-        baseFunc.type(DISCOUNT, reservationInfo.getDiscount());
-        baseFunc.type(ADULTS, reservationInfo.getPassengerCount());
-        baseFunc.type(CHILDREN, reservationInfo.getChildCount());
-        baseFunc.type(BAG, reservationInfo.getBagsCount());
-        baseFunc.selectByText(FLIGHT, reservationInfo.getFlightDate());
+    public void fillInPassengerInfo(Flight flight, Passenger passenger) {
+        baseFunc.type(FIRST_NAME, passenger.getFirstName());
+        baseFunc.type(LAST_NAME, passenger.getLastName());
+        baseFunc.type(DISCOUNT, flight.getDiscount());
+        baseFunc.type(ADULTS, flight.getPassengersCount());
+        baseFunc.type(CHILDREN, flight.getChildCount());
+        baseFunc.type(BAG, flight.getLuggageCount());
+        baseFunc.selectByText(FLIGHT, flight.getFlightDate());
     }
 
     public String getDepartureAirport() {
-        String airport = "";
-        //Finding element by locator
-        //Getting text
-        return airport;
+        return baseFunc.waitForNumbersOfElementsToBe(FLIGHT_INFO, 5).get(0).getText();
+    }
+
+    public String getArrivalAirport() {
+        return baseFunc.waitForNumbersOfElementsToBe(FLIGHT_INFO, 5).get(1).getText();
     }
 }

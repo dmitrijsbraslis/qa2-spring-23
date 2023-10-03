@@ -1,4 +1,5 @@
-import model.ReservationInfo;
+import model.tickets.Flight;
+import model.tickets.Passenger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pages.BaseFunc;
@@ -8,11 +9,9 @@ import pages.SeatSelectionPage;
 
 public class TicketsTestsOnPages {
     private final String URL = "qaguru.lv:8089/tickets";
-    private final String DEPARTURE_AIRPORT = "RIX";
-    private final String ARRIVAL_AIRPORT = "MEL";
-    private int seatNr = 100500;
-    private ReservationInfo info = new ReservationInfo("Dmitry", "Tester",
-            "CCCCCC", 4, 1, 1, "11-05-2018");
+    private Passenger passenger = new Passenger("Dmitry", "Tester");
+    private Flight flight = new Flight("RIX", "MEL", "CCCCCC", 4, 1,
+            1, "11-05-2018", 18);
 
     @Test
     public void successTicketsBookCheck() {
@@ -20,18 +19,18 @@ public class TicketsTestsOnPages {
         baseFunc.openUrl(URL);
 
         HomePage homePage = new HomePage(baseFunc);
-        homePage.selectDepartureAirport(DEPARTURE_AIRPORT);
-        homePage.selectArrivalAirport(ARRIVAL_AIRPORT);
+        homePage.selectDepartureAirport(flight.getDeparture());
+        homePage.selectArrivalAirport(flight.getArrival());
         homePage.clickGoGoGoBtn();
 
         PassengerInfoPage infoPage = new PassengerInfoPage(baseFunc);
-        infoPage.fillInPassengerInfo(info);
+        infoPage.fillInPassengerInfo(flight, passenger);
 
         //....
-        Assertions.assertEquals(DEPARTURE_AIRPORT, infoPage.getDepartureAirport(), "Error!");
+        Assertions.assertEquals(flight.getDeparture(), infoPage.getDepartureAirport(), "Error!");
 
         //....
         SeatSelectionPage seatSelectionPage = new SeatSelectionPage(baseFunc);
-        seatSelectionPage.selectSeat(seatNr);
+        seatSelectionPage.selectSeat(flight.getSeatNr());
     }
 }

@@ -6,7 +6,7 @@ Feature: Air Ticket Booking
       | to   | JFC |
 
     And passenger info is:
-      | first_name | Dimko      |
+      | first_name | random     |
       | last_name  | The Tester |
 
     And flight info is:

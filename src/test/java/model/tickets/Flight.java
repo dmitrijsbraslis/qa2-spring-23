@@ -10,6 +10,19 @@ public class Flight {
     private String flightDate;
     private int seatNr;
 
+    public Flight(String departure, String arrival, String discount, int passengersCount, int childCount, int luggageCount, String flightDate, int seatNr) {
+        this.departure = departure;
+        this.arrival = arrival;
+        this.discount = discount;
+        this.passengersCount = passengersCount;
+        this.childCount = childCount;
+        this.luggageCount = luggageCount;
+        this.flightDate = flightDate;
+        this.seatNr = seatNr;
+    }
+
+    public Flight() {}
+
     public String getDeparture() {
         return departure;
     }
