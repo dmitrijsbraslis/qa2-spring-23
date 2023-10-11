@@ -24,6 +24,7 @@ public class TicketsTestsOnPages {
         homePage.clickGoGoGoBtn();
 
         PassengerInfoPage infoPage = new PassengerInfoPage(baseFunc);
+
         infoPage.fillInPassengerInfo(flight, passenger);
 
         //....
